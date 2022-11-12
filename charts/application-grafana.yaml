@@ -14,15 +14,14 @@ spec:
 
   source:
     repoURL: https://github.com/pentago/monitoring.git
-    targetRevision: HEAD  # For Helm, this refers to the chart version.
+    # targetRevision: HEAD  # For Helm, this refers to the chart version.
     path: charts/grafana
 
-    chart: '' # Set this when pulling directly from a Helm repo. DO NOT set for git-hosted Helm charts.
     helm:
-      version: v3
+      version: v2
       releaseName: grafana
-      # valueFiles:
-      #   - charts/grafana/values.yaml
+      valueFiles:
+        - charts/grafana/values.yaml
 
   destination:
     server: https://kubernetes.default.svc
