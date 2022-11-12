@@ -11,28 +11,17 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/pentago/monitoring.git
-    path: charts/grafana
     helm:
-      releaseName: grafana
-      valueFiles: ['values.yaml']
+      valueFiles: values.yaml
+    chart: grafana
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 6.43.5
   destination:
-    server: https://kubernetes.default.svc
     namespace: observability
+    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-      allowEmpty: false
     syncOptions:
-      - Validate=false
-      - CreateNamespace=true
-      - PrunePropagationPolicy=foreground
-      - PruneLast=true
-    retry:
-      limit: 5
-      backoff:
-        duration: 5s
-        factor: 2
-        maxDuration: 3m
-  revisionHistoryLimit: 10
+    - CreateNamespace=true
