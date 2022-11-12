@@ -10,15 +10,12 @@ metadata:
     stack: monitoring
 spec:
   project: default
-  revisionHistoryLimit: 10
   source:
     repoURL: https://github.com/pentago/monitoring.git
-    targetRevision: HEAD  # For Helm, this refers to the chart version.
     path: charts/grafana
     helm:
-      version: v3
-      values: |
-{{ .Files.Get "values.yaml" | indent 8 }}
+      releaseName: grafana
+      valueFiles: ['values.yaml']
   destination:
     server: https://kubernetes.default.svc
     namespace: observability
@@ -38,3 +35,4 @@ spec:
         duration: 5s
         factor: 2
         maxDuration: 3m
+  revisionHistoryLimit: 10
