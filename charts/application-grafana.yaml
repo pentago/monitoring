@@ -14,15 +14,11 @@ spec:
 
   source:
     repoURL: https://github.com/pentago/monitoring.git
-    # targetRevision: HEAD  # For Helm, this refers to the chart version.
+    targetRevision: HEAD  # For Helm, this refers to the chart version.
     path: charts/grafana
-
     helm:
-      version: v3
       valueFiles:
-        - charts/grafana/values.yaml
-
-
+      - values.yaml
 
   destination:
     server: https://kubernetes.default.svc
