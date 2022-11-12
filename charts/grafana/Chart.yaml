@@ -1,4 +1,4 @@
-apiVersion: v2
+apiVersion: v3
 name: root
 version: 1.0.0
 dependencies:
