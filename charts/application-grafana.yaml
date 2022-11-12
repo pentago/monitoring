@@ -18,10 +18,11 @@ spec:
     path: charts/grafana
 
     helm:
-      version: v2
-      releaseName: grafana
+      version: v3
       valueFiles:
         - charts/grafana/values.yaml
+
+
 
   destination:
     server: https://kubernetes.default.svc
