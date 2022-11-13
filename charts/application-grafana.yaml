@@ -12,12 +12,11 @@ spec:
   project: default
 
   source:
-    # chart: grafana
     repoURL: https://github.com/pentago/monitoring.git
     targetRevision: HEAD
     path: 'charts/grafana'
     helm:
-      releaseName: grafana
+      # releaseName: grafana
       valueFiles:
         - values.yaml
 
