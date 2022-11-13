@@ -1,0 +1,33 @@
+---
+# Source: prometheus/templates/pushgateway/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
+    nginx.ingress.kubernetes.io/enable-access-log: "true"
+  labels:
+    component: "pushgateway"
+    app: prometheus
+    release: prometheus
+    chart: prometheus-15.18.0
+    heritage: Helm
+  name: prometheus-pushgateway
+  namespace: default
+spec:
+  rules:
+    - host: pushgateway.gitops.local
+      http:
+        paths:
+
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prometheus-pushgateway
+                port:
+                  number: 9091
+  tls:
+    - hosts:
+      - pushgateway.gitops.local
+      secretName: pushgateway-tls

@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: https://github.com/pentago/monitoring.git
     targetRevision: HEAD
-    path: 'charts/grafana'
+    path: 'grafana'
     helm:
       valueFiles:
         - values.yaml
