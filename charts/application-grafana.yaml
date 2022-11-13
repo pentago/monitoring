@@ -15,9 +15,6 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-    # parameters:
-    # - name: "service.type"
-    #   value: LoadBalancer
     chart: grafana
     repoURL: https://grafana.github.io/helm-charts
     targetRevision: 6.43.5
