@@ -603,18 +603,18 @@ grafana:
   ##
   ## `path` must be /var/lib/grafana/dashboards/<provider_name>
   ##
-  dashboardProviders:
-    dashboardproviders.yaml:
-      apiVersion: 1
-      providers:
-      - name: 'default'
-        orgId: 1
-        folder: ''
-        type: file
-        disableDeletion: false
-        editable: true
-        options:
-          path: /var/lib/grafana/dashboards/default
+  dashboardProviders: {}
+  #  dashboardproviders.yaml:
+  #    apiVersion: 1
+  #    providers:
+  #    - name: 'default'
+  #      orgId: 1
+  #      folder: ''
+  #      type: file
+  #      disableDeletion: false
+  #      editable: true
+  #      options:
+  #        path: /var/lib/grafana/dashboards/default
 
   ## Configure grafana dashboard to import
   ## NOTE: To use dashboards you must also enable/configure dashboardProviders
@@ -7695,21 +7695,21 @@ grafana:
     server:
       domain: "{{ if (and .Values.ingress.enabled .Values.ingress.hosts) }}{{ .Values.ingress.hosts | first }}{{ else }}''{{ end }}"
   ## grafana Authentication can be enabled with the following values on grafana.ini
-  # server:
-        # The full public facing url you use in browser, used for redirects and emails
-  #    root_url:
-  # https://grafana.com/docs/grafana/latest/auth/github/#enable-github-in-grafana
-  # auth.github:
-  #    enabled: false
-  #    allow_sign_up: false
-  #    scopes: user:email,read:org
-  #    auth_url: https://github.com/login/oauth/authorize
-  #    token_url: https://github.com/login/oauth/access_token
-  #    api_url: https://api.github.com/user
-  #    team_ids:
-  #    allowed_organizations:
-  #    client_id:
-  #    client_secret:
+    # server:
+          # The full public facing url you use in browser, used for redirects and emails
+    #    root_url:
+    # https://grafana.com/docs/grafana/latest/auth/github/#enable-github-in-grafana
+    # auth.github:
+    #    enabled: false
+    #    allow_sign_up: false
+    #    scopes: user:email,read:org
+    #    auth_url: https://github.com/login/oauth/authorize
+    #    token_url: https://github.com/login/oauth/access_token
+    #    api_url: https://api.github.com/user
+    #    team_ids:
+    #    allowed_organizations:
+    #    client_id:
+    #    client_secret:
   ## LDAP Authentication can be enabled with the following values on grafana.ini
   ## NOTE: Grafana will fail to start if the value for ldap.toml is invalid
     # auth.ldap:
