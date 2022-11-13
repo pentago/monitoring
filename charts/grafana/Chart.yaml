@@ -1,6 +1,7 @@
 apiVersion: v3
 name: root
 version: 1.0.0
+
 dependencies:
   - name: grafana
     version: 6.43.5

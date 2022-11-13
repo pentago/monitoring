@@ -6,21 +6,25 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   labels:
-    name: grafana
+    app: grafana
     stack: monitoring
 spec:
   project: default
+
   source:
+    # chart: grafana
+    repoURL: https://github.com/pentago/monitoring.git
+    targetRevision: HEAD
     path: 'charts/grafana'
-    # helm:
-    #   valueFiles:
-    #     - values.yaml
-    chart: grafana
-    repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 6.43.5
+    helm:
+      releaseName: grafana
+      valueFiles:
+        - values.yaml
+
   destination:
     namespace: observability
     server: https://kubernetes.default.svc
+
   syncPolicy:
     automated:
       prune: true
