@@ -1210,7 +1210,7 @@ prometheus:
     ingress:
       ## If true, pushgateway Ingress will be created
       ##
-      enabled: true
+      enabled: false
 
       # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
       # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
@@ -1368,7 +1368,7 @@ prometheus:
     persistentVolume:
       ## If true, pushgateway will create/use a Persistent Volume Claim
       ##
-      enabled: true
+      enabled: false
 
       ## pushgateway data Persistent Volume access modes
       ## Must match those of existing PV or dynamic provisioner
