@@ -1,5 +1,6 @@
-name: prometheus
-version: 2.40.1
+apiVersion: v3
+name: root
+version: 1.0.0
 
 dependencies:
   - name: prometheus

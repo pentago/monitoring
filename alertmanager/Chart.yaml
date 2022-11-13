@@ -1,7 +1,8 @@
-name: alertmanager
-version: 0.24.0
+apiVersion: v3
+name: root
+version: 1.0.0
 
 dependencies:
   - name: alertmanager
-    version: 0.24.0
+    version: 2.40.1
     repository: https://prometheus-community.github.io/helm-charts
