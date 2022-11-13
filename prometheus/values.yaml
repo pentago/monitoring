@@ -31,7 +31,7 @@ prometheus:
   alertmanager:
     ## If false, alertmanager will not be installed
     ##
-    enabled: false
+    enabled: true
 
     ## Use a ClusterRole (and ClusterRoleBinding)
     ## - If set to false - we define a Role and RoleBinding in the defined namespaces ONLY
@@ -118,7 +118,7 @@ prometheus:
     ingress:
       ## If true, alertmanager Ingress will be created
       ##
-      enabled: false
+      enabled: true
 
       # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
       # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
@@ -126,9 +126,9 @@ prometheus:
 
       ## alertmanager Ingress annotations
       ##
-      annotations: {}
-      #   kubernetes.io/ingress.class: nginx
-      #   kubernetes.io/tls-acme: 'true'
+      annotations:
+        cert-manager.io/cluster-issuer: 'ca-issuer'
+        nginx.ingress.kubernetes.io/enable-access-log: 'true'
 
       ## alertmanager Ingress additional labels
       ##
@@ -137,9 +137,8 @@ prometheus:
       ## alertmanager Ingress hostnames with optional path
       ## Must be provided if Ingress is enabled
       ##
-      hosts: []
-      #   - alertmanager.domain.com
-      #   - domain.com/alertmanager
+      hosts:
+        - alertmanager.gitops.local
 
       path: /
 
@@ -156,10 +155,10 @@ prometheus:
       ## alertmanager Ingress TLS configuration
       ## Secrets must be manually created in the namespace
       ##
-      tls: []
-      #   - secretName: prometheus-alerts-tls
-      #     hosts:
-      #       - alertmanager.domain.com
+      tls:
+        - secretName: alertmanager-tls
+          hosts:
+            - alertmanager.gitops.local
 
     ## Alertmanager Deployment Strategy type
     # strategy:
@@ -223,7 +222,7 @@ prometheus:
 
       ## alertmanager data Persistent Volume size
       ##
-      size: 2Gi
+      size: 10Gi
 
       ## alertmanager data Persistent Volume Storage Class
       ## If defined, storageClassName: <storageClass>
