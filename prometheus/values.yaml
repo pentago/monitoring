@@ -231,7 +231,7 @@ prometheus:
       ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
       ##   GKE, AWS & OpenStack)
       ##
-      # storageClass: "-"
+      storageClass: null
 
       ## alertmanager data Persistent Volume Binding Mode
       ## If defined, volumeBindingMode: <volumeBindingMode>
@@ -431,7 +431,7 @@ prometheus:
     alertmanager:
       ## If false, the configmap-reload container will not be deployed
       ##
-      enabled: false
+      enabled: true
 
       ## configmap-reload container name
       ##
@@ -703,7 +703,7 @@ prometheus:
 
     ## External URL which can access prometheus
     ## Maybe same with Ingress host name
-    baseURL: ""
+    baseURL: "https://prometheus.gitops.local"
 
     ## Additional server container environment variables
     ##
@@ -946,7 +946,7 @@ prometheus:
       ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
       ##   GKE, AWS & OpenStack)
       ##
-      # storageClass: "-"
+      storageClass: null
 
       ## Prometheus server data Persistent Volume Binding Mode
       ## If defined, volumeBindingMode: <volumeBindingMode>
@@ -1099,7 +1099,7 @@ prometheus:
       # options:
       #   - name: ndots
       #     value: "2"
-    #   - name: edns0
+      #   - name: edns0
 
     ## Security context to be added to server pods
     ##
@@ -1152,7 +1152,7 @@ prometheus:
 
     ## Prometheus data retention period (default if not specified is 15 days)
     ##
-    retention: "15d"
+    retention: "30d"
 
     ## Array of extra Kubernetes manifests, in form of YAML object,
     ## if you want to deploy
@@ -1218,15 +1218,13 @@ prometheus:
 
       ## pushgateway Ingress annotations
       ##
-      annotations:
-        cert-manager.io/cluster-issuer: 'ca-issuer'
-        nginx.ingress.kubernetes.io/enable-access-log: 'true'
+      annotations: {}
 
       ## pushgateway Ingress hostnames with optional path
       ## Must be provided if Ingress is enabled
       ##
-      hosts:
-        - pushgateway.gitops.local
+      # hosts:
+      #   - pushgateway.gitops.local
 
       path: /
 
@@ -1243,10 +1241,10 @@ prometheus:
       ## pushgateway Ingress TLS configuration
       ## Secrets must be manually created in the namespace
       ##
-      tls:
-        - secretName: pushgateway-tls
-          hosts:
-            - pushgateway.gitops.local
+      # tls:
+      #   - secretName: pushgateway-tls
+      #     hosts:
+      #       - pushgateway.gitops.local
 
     ## Node tolerations for pushgateway scheduling to nodes with taints
     ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
@@ -1473,9 +1471,6 @@ prometheus:
       rule_files:
         - /etc/config/recording_rules.yml
         - /etc/config/alerting_rules.yml
-      ## Below two files are DEPRECATED will be removed from this default values file
-        - /etc/config/rules
-        - /etc/config/alerts
 
       scrape_configs:
         - job_name: prometheus
